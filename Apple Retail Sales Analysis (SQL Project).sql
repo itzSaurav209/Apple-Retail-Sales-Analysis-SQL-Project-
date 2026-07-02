@@ -44,9 +44,18 @@ FROM sales
 where sale_date BETWEEN 01-12-2023 AND 31-12-2023;
 
 /*determine how many stores have never had a warranty claim filed */
+select *
+from sales as s 
+right join warranty as w
+on s.sale_id=w.sale_id;
 
-SELECT COUNT(sale_id)
-FROM warranty
-WHERE sale_id!=claim_id;
+select distinct store_id
+from sales as s 
+right join warranty as w
+on s.sale_id=w.sale_id;
 
 
+/*calculate the percentage of warranty claims marked as "pending" */
+/*prcnetage formula =(number of claim that as pending/total repair_status)*100*/
+
+select distinct repair_status from warranty;
